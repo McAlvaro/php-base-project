@@ -1,0 +1,22 @@
+{
+    "name": "mcalvaro/base-project",
+    "description": "FrontController Base Project",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "McAlvaro",
+            "email": "mc.alv641@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    }
+}
