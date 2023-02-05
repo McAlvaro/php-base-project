@@ -35,7 +35,7 @@ class Request {
 
         $controller = ucfirst( $this->controller );
 
-        return "App\Htpp\Controllers\\{$controller}Controller";
+        return "App\Http\Controllers\\{$controller}Controller";
 
     }
 
