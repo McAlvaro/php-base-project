@@ -24,7 +24,7 @@ class Response {
 
         $content = file_get_contents(__DIR__."/../../views/$view.php");
 
-        return __DIR__."/../../views/layout.php";
+        require __DIR__."/../../views/layout.php";
 
     }
 

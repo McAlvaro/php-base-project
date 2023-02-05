@@ -10,8 +10,6 @@ class Request {
 
     public function __construct()
     {
-        echo 'OK';
-
         $this->segments = explode('/', $_SERVER['REQUEST_URI']);
 
         $this->setController();
