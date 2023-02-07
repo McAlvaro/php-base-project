@@ -12,10 +12,11 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
         <div class="container">
             <a href="/" class="navbar-brand h3">FW</a>
-            <div class="float-right">
-                <a href="/service" class="navbar-brand h3">Services</a>
-                <a href="/contact" class="navbar-brand h3">Contact</a>
-            </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="/" class="nav-link h3">Home</a></li>
+                <li class="nav-item"><a href="/service" class="nav-link h3">Services</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link h3">Contact</a></li>
+            </ul>
         </div>
     </nav>
     <div class="container">

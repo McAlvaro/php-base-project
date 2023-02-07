@@ -2,7 +2,10 @@
 
 namespace App\Http;
 
-class Request {
+use Exception;
+
+class Request
+{
 
     protected $segments = [];
     protected $controller;
@@ -14,45 +17,61 @@ class Request {
 
         $this->setController();
         $this->setMethod();
-
     }
 
-    public function setController() {
+    public function setController()
+    {
 
         $this->controller = empty($this->segments[1]) ? 'home' : $this->segments[1];
-
     }
 
-    public function setMethod() {
+    public function setMethod()
+    {
 
         $this->method = empty($this->segments[2]) ? 'index' : $this->segments[2];
-
     }
 
-    public function getController(){
+    public function getController()
+    {
 
-        $controller = ucfirst( $this->controller );
+        $controller = ucfirst($this->controller);
 
-        return "App\Http\Controllers\\{$controller}Controller";
+        $class = "App\Http\Controllers\\{$controller}Controller";
 
+
+        if (!class_exists($class)) {
+            throw new Exception("Error Processing Request");
+        }
+
+        return $class;
     }
 
-    public function getMethod () {
+    public function getMethod()
+    {
 
         return $this->method;
-
     }
 
-    public function send() {
+    public function send()
+    {
 
-        $controller = $this->getController();
-        $method = $this->getMethod();
+        try {
+            $controller = $this->getController();
+            $method = $this->getMethod();
 
-        $response = call_user_func([ new $controller, $method]);
+            $response = call_user_func([new $controller, $method]);
 
-        $response->send();
 
+            if (!$response instanceof Response) {
+
+                throw new Exception("Error Processing Request");
+            }
+
+            $response->send();
+        } catch (Exception $ex) {
+
+            echo "Details: {$ex->getMessage()}";
+        }
     }
-
-
 }
+
